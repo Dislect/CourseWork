@@ -1,0 +1,33 @@
+﻿@model HomeViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<style>
+    .brd {
+        border:1px solid black;
+        margin-top:5px;
+    }
+</style>
+
+@{
+    foreach (HierarchicalMenuItem hItem in Model.menu.GetHMenuItems())
+    {
+    <div align="center">
+
+        <div class="brd">
+
+            <h5>
+                @hItem.GetTitle()
+            </h5>
+
+            @foreach (var item in hItem.GetMenuItems())
+            {
+                <li>@item.GetTitle()</li>
+            }
+
+        </div>
+    </div>
+    }
+}
