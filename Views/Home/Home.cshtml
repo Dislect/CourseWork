@@ -12,7 +12,7 @@
 </style>
 
 @{
-    foreach (HierarchicalMenuItem hItem in Model.menu.GetHMenuItems())
+    foreach (HierarchicalMenuItem hItem in Model.menu.menuItems)
     {
     <div align="center">
 
@@ -22,7 +22,7 @@
                 @hItem.GetTitle()
             </h5>
 
-            @foreach (var item in hItem.GetMenuItems())
+            @foreach (var item in hItem.menuItems)
             {
                 <li>@item.GetTitle()</li>
             }

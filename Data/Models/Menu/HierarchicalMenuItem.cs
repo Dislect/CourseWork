@@ -8,25 +8,20 @@ namespace сoursework.Data.Models.Menu
 {
     public class HierarchicalMenuItem : MenuItem, IMenuItem
     {
-        private List<MenuItem> _menuItems;
+        public List<MenuItem> menuItems;
 
         public HierarchicalMenuItem(string title, string href) : base(title, href)
         {
-            _menuItems = new();
+            menuItems = new();
         }
 
         public HierarchicalMenuItem(string title, string href, params MenuItem[] menuItems) : base(title, href)
         {
-            _menuItems = new();
+            this.menuItems = new();
             foreach (var item in menuItems)
             {
-                _menuItems.Add(item);
+                this.menuItems.Add(item);
             }
-        }
-
-        public List<MenuItem> GetMenuItems()
-        {
-            return _menuItems;
         }
     }
 }

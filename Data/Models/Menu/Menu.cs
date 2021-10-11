@@ -5,20 +5,20 @@ namespace сoursework.Data.Models.Menu
     public class Menu
     {
         private Menu _menu;
-        private List<HierarchicalMenuItem> _menuItems;
+        public List<HierarchicalMenuItem> menuItems;
 
         public Menu()
         {
-            _menuItems = CreateDefaultMenuItems();
+            menuItems = CreateDefaultMenuItems();
             _menu = this;
         }
 
         public Menu(params HierarchicalMenuItem[] menuItems)
         {
-            _menuItems = new();
+            this.menuItems = new();
             foreach (var item in menuItems)
             {
-                _menuItems.Add(item);
+                this.menuItems.Add(item);
             }
             _menu = this;
         }
@@ -26,21 +26,21 @@ namespace сoursework.Data.Models.Menu
         private List<HierarchicalMenuItem> CreateDefaultMenuItems()
         {
             var list = new List<HierarchicalMenuItem>();
-            var hMenu1 = new HierarchicalMenuItem("Первый пункт меню", "ссылка 1",
-                new MenuItem("первый подпункт", "ссылка 11"),
-                new MenuItem("второй подпункт", "ссылка 12")
-                );
-            var hMenu2 = new HierarchicalMenuItem("Второй пункт меню", "ссылка 2");
-            var hMenu3 = new HierarchicalMenuItem("Третий пункт меню", "ссылка 3");
-            list.Add(hMenu1);
-            list.Add(hMenu2);
-            list.Add(hMenu3);
-            return list;
-        }
 
-        public List<HierarchicalMenuItem> GetHMenuItems()
-        {
-            return _menuItems;
+            list.AddRange(new List<HierarchicalMenuItem>() 
+            {
+                new HierarchicalMenuItem("Первый пункт меню gg", "ссылка 1")
+                {
+                    menuItems = new()
+                    {
+                        new MenuItem("первый подпункт 1g", "ссылка 11"),
+                        new MenuItem("второй подпункт 2g", "ссылка 12")
+                    }
+                },
+                new HierarchicalMenuItem("Второй пункт меню", "ссылка 2"),
+                new HierarchicalMenuItem("Третий пункт меню", "ссылка 3")
+            });
+            return list;
         }
 
         public Menu GetMenuObject()
