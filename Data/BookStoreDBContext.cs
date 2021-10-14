@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace сoursework.Data.Models
 {
     public class BookStoreDBContext : DbContext
     {
-        public BookStoreDBContext() : base() { }
+        public BookStoreDBContext(DbContextOptions<BookStoreDBContext> options) : base(options)
+        {
+        }
 
         public DbSet<Book> books { get; set; }
 

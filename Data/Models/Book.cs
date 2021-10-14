@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace сoursework.Data.Models
 {
+    [Table("Books")]
     public class Book
     {
-        public int id { get; set; }
+        public Guid id { get; set; }
 
         public string title { get; set; }
 
@@ -19,13 +22,11 @@ namespace сoursework.Data.Models
 
         public string publisherСode { get; set; }
 
-        public uint year { get; set; }
-
-        public int idTopic { get; set; }
+        public uint? year { get; set; }
 
         public string imgPath { get; set; }
 
-        public string imgAlter { get; set; }
+        public string imgAlterText { get; set; }
 
         public virtual Topic topic { get; set; }
     }

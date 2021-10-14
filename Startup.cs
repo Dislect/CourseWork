@@ -1,32 +1,34 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using сoursework.Data.Interfaces;
 using сoursework.Data.Models.Menu;
+using Microsoft.EntityFrameworkCore;
+using сoursework.Data.Models;
 
 namespace сoursework
 {
     public class Startup
     {
+        private string _connection { get; set; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _connection = Configuration.GetConnectionString("DefaultConnection");
         }
 
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BookStoreDBContext>(options => options.UseSqlServer(_connection));
+
             services.AddTransient<Menu>();
-            services.AddMvc();
-            services.AddMvc(option => option.EnableEndpointRouting = false);
+
+            services.AddMvc(option => option.EnableEndpointRouting = false)
+                .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0)
+                .AddSessionStateTempDataProvider();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -34,8 +36,7 @@ namespace сoursework
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            //app.UseMvcWithDefaultRoute();
-            //система маршрутизации
+
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
