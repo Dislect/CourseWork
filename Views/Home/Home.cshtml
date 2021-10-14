@@ -6,28 +6,34 @@
 
 <style>
     .brd {
-        border:1px solid black;
-        margin-top:5px;
+        border: 1px solid black;
+        margin-top: 5px;
     }
 </style>
 
 @{
-    foreach (HierarchicalMenuItem hItem in Model.menu.menuItems)
+    foreach (var hItem in Model.menu.GetHierarchicalMenuItems())
     {
-    <div align="center">
+        <div align="center">
 
-        <div class="brd">
+            <div class="brd">
 
-            <h5>
-                @hItem.GetTitle()
-            </h5>
+                <h5>
+                    @hItem.GetTitle()
+                </h5>
 
-            @foreach (var item in hItem.menuItems)
-            {
-                <li>@item.GetTitle()</li>
-            }
+                @foreach (var item in hItem.GetMenuItems())
+                {
+                    <li>@item.GetTitle()</li>
+                }
 
+            </div>
         </div>
-    </div>
     }
+}
+
+@foreach (var book in Model.bookRep.books)
+{
+    <h1>  @book.title  </h1> <br/>
+    @book.description
 }

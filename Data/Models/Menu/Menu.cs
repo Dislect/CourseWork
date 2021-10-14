@@ -1,40 +1,38 @@
 ﻿using System.Collections.Generic;
+using сoursework.Data.Interfaces;
 
 namespace сoursework.Data.Models.Menu
 {
-    public class Menu
+    public class Menu : IMenu
     {
-        private Menu _menu;
-        public List<HierarchicalMenuItem> menuItems;
+        private List<IHierarchicalMenuItem> _menuItems;
 
         public Menu()
         {
-            menuItems = CreateDefaultMenuItems();
-            _menu = this;
+            _menuItems = CreateDefaultMenuItems();
         }
 
-        public Menu(params HierarchicalMenuItem[] menuItems)
+        public Menu(params IHierarchicalMenuItem[] menuItems)
         {
-            this.menuItems = new();
+            this._menuItems = new();
             foreach (var item in menuItems)
             {
-                this.menuItems.Add(item);
+                this._menuItems.Add(item);
             }
-            _menu = this;
         }
 
-        private List<HierarchicalMenuItem> CreateDefaultMenuItems()
+        private List<IHierarchicalMenuItem> CreateDefaultMenuItems()
         {
-            var list = new List<HierarchicalMenuItem>();
+            var list = new List<IHierarchicalMenuItem>();
 
-            list.AddRange(new List<HierarchicalMenuItem>() 
+            list.AddRange(new List<IHierarchicalMenuItem>() 
             {
-                new HierarchicalMenuItem("Первый пункт меню gg", "ссылка 1")
+                new HierarchicalMenuItem("Первый пункт меню", "ссылка 1")
                 {
-                    menuItems = new()
+                    _menuItems = new()
                     {
-                        new MenuItem("первый подпункт 1g", "ссылка 11"),
-                        new MenuItem("второй подпункт 2g", "ссылка 12")
+                        new MenuItem("первый подпункт ", "ссылка 11"),
+                        new MenuItem("второй подпункт ", "ссылка 12")
                     }
                 },
                 new HierarchicalMenuItem("Второй пункт меню", "ссылка 2"),
@@ -43,9 +41,9 @@ namespace сoursework.Data.Models.Menu
             return list;
         }
 
-        public Menu GetMenuObject()
+        public List<IHierarchicalMenuItem> GetHierarchicalMenuItems()
         {
-            return _menu;
+            return _menuItems;
         }
     }
 }

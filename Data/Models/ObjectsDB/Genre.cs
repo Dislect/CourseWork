@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace сoursework.Data.Models
 {
-    [Table("Topics")]
-    public class Topic
+    [Table("Genres")]
+    public class Genre
     {
-        public Guid id { get; set; }
-
-        public string topic { get; set; }
-
-        public virtual List<Book> books { get; set; }
+        public int id { get; set; }
+        public string titleGenre { get; set; }
+        public virtual List<Book> books { get; set; } = new();
     }
 }

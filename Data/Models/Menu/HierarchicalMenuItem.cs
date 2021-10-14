@@ -6,22 +6,27 @@ using сoursework.Data.Interfaces;
 
 namespace сoursework.Data.Models.Menu
 {
-    public class HierarchicalMenuItem : MenuItem, IMenuItem
+    public class HierarchicalMenuItem : MenuItem, IHierarchicalMenuItem
     {
-        public List<MenuItem> menuItems;
+        public List<IMenuItem> _menuItems;
 
         public HierarchicalMenuItem(string title, string href) : base(title, href)
         {
-            menuItems = new();
+            _menuItems = new();
         }
 
-        public HierarchicalMenuItem(string title, string href, params MenuItem[] menuItems) : base(title, href)
+        public HierarchicalMenuItem(string title, string href, params IMenuItem[] menuItems) : base(title, href)
         {
-            this.menuItems = new();
+            this._menuItems = new();
             foreach (var item in menuItems)
             {
-                this.menuItems.Add(item);
+                this._menuItems.Add(item);
             }
+        }
+
+        public List<IMenuItem> GetMenuItems()
+        {
+            return _menuItems;
         }
     }
 }
