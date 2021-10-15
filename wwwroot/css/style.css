@@ -1,0 +1,73 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    margin: auto; /* выравнивание по центру */
+    margin-bottom: 2%; /* отступ снизу */
+    width: 80%; /* ширина */
+    padding: 5px 0px 5px 0px; /* отступы внутри */
+}
+
+.menu ul {
+    list-style: none; /*убираем маркеры списка*/
+    padding-left: 0; /*убираем отступы*/
+    margin-top: 25px; /*делаем отступ сверху*/
+    background: #343a40; /*добавляем фон всему меню*/
+    height: 50px; /*задаем высоту*/
+}
+
+    .menu ul a {
+        text-decoration: none; /*убираем подчеркивание текста ссылок*/
+        background: #343a40; /*добавляем фон к пункту меню*/
+        color: #fff; /*меняем цвет ссылок*/
+        padding: 0px 15px; /*добавляем отступ*/
+        font-family: arial; /*меняем шрифт*/
+        line-height: 50px; /*ровняем меню по вертикали*/
+        border-radius: 3px; /* округление углов */
+        display: block;
+        border-right: 1px solid #6c757d; /*добавляем бордюр справа*/
+        -moz-transition: all 0.3s 0.01s ease; /*делаем плавный переход*/
+        -o-transition: all 0.3s 0.01s ease;
+        -webkit-transition: all 0.3s 0.01s ease;
+    }
+
+        .menu ul a:hover {
+            background: #6c757d; /*добавляем эффект при наведении*/
+        }
+
+    .menu ul li {
+        float: left; /*Размещаем список горизонтально для реализации меню*/
+        position: relative; /*задаем позицию для позиционирования*/
+    }
+
+/*Стили для скрытого выпадающего меню*/
+.menu li > ul {
+    position: absolute;
+    top: 25px;
+    display: none;
+}
+
+/*Делаем скрытую часть видимой*/
+.menu li:hover > ul {
+    display: block;
+    width: 250px; /*Задаем ширину выпадающего меню*/
+}
+
+    .menu li:hover > ul > li {
+        float: none; /*Убираем горизонтальное позиционирование*/
+    }
+
+footer {
+    font-size: 12pt; /* размер шрифта */
+    margin: auto; /* выравнивание по центру */
+    margin-top: 2%; /* отступ сверху */
+    box-shadow: 4px 2px 5px 2px grey; /* тень */
+    border-radius: 10px; /* округление углов */
+    background-repeat: repeat; /* повтор фона */
+    width: 65%; /* ширина */
+    padding-top: 20px; /* отступ от границы сверху */
+    text-align: center; /*выравниваение текста по центру*/
+    height: 40px; /*задаем высоту*/
+}

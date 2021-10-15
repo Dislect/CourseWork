@@ -4,34 +4,6 @@
     Layout = "_Layout";
 }
 
-<style>
-    .brd {
-        border: 1px solid black;
-        margin-top: 5px;
-    }
-</style>
-
-@{
-    foreach (var hItem in Model.menu.GetHierarchicalMenuItems())
-    {
-        <div align="center">
-
-            <div class="brd">
-
-                <h5>
-                    @hItem.GetTitle()
-                </h5>
-
-                @foreach (var item in hItem.GetMenuItems())
-                {
-                    <li>@item.GetTitle()</li>
-                }
-
-            </div>
-        </div>
-    }
-}
-
 @foreach (var book in Model.bookRep.books)
 {
     <h1>  @book.title  </h1> <br/>

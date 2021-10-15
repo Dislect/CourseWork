@@ -25,18 +25,18 @@ namespace сoursework.Data.Models.Menu
         {
             var list = new List<IHierarchicalMenuItem>();
 
-            list.AddRange(new List<IHierarchicalMenuItem>() 
+            list.AddRange(new List<IHierarchicalMenuItem>()
             {
-                new HierarchicalMenuItem("Первый пункт меню", "ссылка 1")
+                new HierarchicalMenuItem("Первый", "ссылка 1")
                 {
                     _menuItems = new()
                     {
-                        new MenuItem("первый подпункт ", "ссылка 11"),
-                        new MenuItem("второй подпункт ", "ссылка 12")
+                        new MenuItem("подпункт ", "ссылка 11"),
+                        new MenuItem("подпункт ", "ссылка 12")
                     }
                 },
-                new HierarchicalMenuItem("Второй пункт меню", "ссылка 2"),
-                new HierarchicalMenuItem("Третий пункт меню", "ссылка 3")
+                new HierarchicalMenuItem("Второй  ", "ссылка 2"),
+                new HierarchicalMenuItem("Третий  ", "ссылка 3")
             });
             return list;
         }

@@ -1,7 +1,46 @@
 ﻿@*Главный шаблон веб приложения*@
+@model HomeViewModel
 
-<h1> Hello world !!!</h1>
+<!DOCTYPE html>
+<html>
 
-<main>
-    @RenderBody()
-</main>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ИС</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/style.css" type="text/css">
+</head>
+
+<body>
+    <nav class="menu">
+        <ul>
+            @foreach (var hierarchicalMenuItem in Model.menu.GetHierarchicalMenuItems())
+            {
+                <li>
+                    <a href="@hierarchicalMenuItem.GetHref()">@hierarchicalMenuItem.GetTitle()</a>
+                    @if (hierarchicalMenuItem.GetMenuItems().Count() != 0)
+                    {
+                        <ul>
+                            @foreach (var menuItem in hierarchicalMenuItem.GetMenuItems())
+                            {
+                                <li>
+                                    <a href="@menuItem.GetHref()">@menuItem.GetTitle()</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+        </ul>
+    </nav>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        © "Книжная информационная система", 2021. Все права защищены.
+    </footer>
+
+</body>
+</html>
