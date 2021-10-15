@@ -27,16 +27,22 @@ namespace сoursework.Data.Models.Menu
 
             list.AddRange(new List<IHierarchicalMenuItem>()
             {
-                new HierarchicalMenuItem("Первый", "ссылка 1")
+                new HierarchicalMenuItem("Просмотр", "#")
                 {
                     _menuItems = new()
                     {
-                        new MenuItem("подпункт ", "ссылка 11"),
-                        new MenuItem("подпункт ", "ссылка 12")
+                        new MenuItem("Авторы ", "/Home/ViewAuthors"),
+                        new MenuItem("Книги ", "/Home/ViewBooks"),
+                        new MenuItem("Сотрудники ", "ссылка 12"),
+                        new MenuItem("Жанры ", "ссылка 12"),
+                        new MenuItem("Должности ", "ссылка 12"),
+                        new MenuItem("Издатели ", "ссылка 12"),
+                        new MenuItem("Магазины ", "ссылка 12")
                     }
                 },
-                new HierarchicalMenuItem("Второй  ", "ссылка 2"),
-                new HierarchicalMenuItem("Третий  ", "ссылка 3")
+                new HierarchicalMenuItem("Создание  ", "ссылка 2"),
+                new HierarchicalMenuItem("Изменение  ", "ссылка 3"),
+                new HierarchicalMenuItem("Удаление  ", "ссылка 3")
             });
             return list;
         }

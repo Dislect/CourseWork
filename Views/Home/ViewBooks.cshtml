@@ -1,11 +1,11 @@
 ﻿@model HomeViewModel
-
 @{
     Layout = "_Layout";
 }
 
 @foreach (var book in Model.bookRep.GetBooks())
 {
-    <h1>  @book.title  </h1> <br/>
+    <h1>  @book.title  </h1>
+    <br />
     @book.description
 }

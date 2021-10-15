@@ -15,23 +15,27 @@ namespace сoursework.Controllers
     {
         private IMenu _menu;
         private BookRep _bookRep;
+        private HomeViewModel _obj;
 
         public HomeController(IMenu menu, BookRep bookRep)
         {
             _menu = menu;
             _bookRep = bookRep;
-        }
-
-        public ViewResult Home()
-        {
-            //_menu = new Menu(new HierarchicalMenuItem("tittle1", "", new MenuItem("Test", "href")));
-            _bookRep.books = _bookRep.GetBooks();
-            HomeViewModel obj = new()
+            _obj = new()
             {
                 menu = _menu,
                 bookRep = _bookRep
             };
-            return View(obj);
+        }
+
+        public ViewResult Home()
+        {
+            return View(_obj);
+        }
+
+        public ViewResult ViewBooks()
+        {
+            return View(_obj);
         }
     }
 }
