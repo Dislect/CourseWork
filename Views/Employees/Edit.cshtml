@@ -5,9 +5,9 @@
     Layout = "_Layout";
 }
 
-<h1>Edit</h1>
+<h1>Изменение</h1>
 
-<h4>Employee</h4>
+<h4>Сотрудник</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,43 +15,43 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
             <div class="form-group">
-                <label asp-for="name" class="control-label"></label>
+                <label asp-for="name" class="control-label">Имя</label>
                 <input asp-for="name" class="form-control" />
                 <span asp-validation-for="name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="surname" class="control-label"></label>
+                <label asp-for="surname" class="control-label">Фамилия</label>
                 <input asp-for="surname" class="form-control" />
                 <span asp-validation-for="surname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="patronymic" class="control-label"></label>
+                <label asp-for="patronymic" class="control-label">Отчество</label>
                 <input asp-for="patronymic" class="form-control" />
                 <span asp-validation-for="patronymic" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="imgPath" class="control-label"></label>
+                <label asp-for="imgPath" class="control-label">Путь к фото</label>
                 <input asp-for="imgPath" class="form-control" />
                 <span asp-validation-for="imgPath" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="imgAlterText" class="control-label"></label>
+                <label asp-for="imgAlterText" class="control-label">Альтернативный текст</label>
                 <input asp-for="imgAlterText" class="form-control" />
                 <span asp-validation-for="imgAlterText" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="phoneNumber" class="control-label"></label>
+                <label asp-for="phoneNumber" class="control-label">Номер телефона</label>
                 <input asp-for="phoneNumber" class="form-control" />
                 <span asp-validation-for="phoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Вернкться обратно</a>
 </div>
 

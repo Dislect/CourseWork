@@ -24,24 +24,6 @@ namespace сoursework.Controllers
             return View(await _context.genres.ToListAsync());
         }
 
-        // GET: Genres/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var genre = await _context.genres
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (genre == null)
-            {
-                return NotFound();
-            }
-
-            return View(genre);
-        }
-
         // GET: Genres/Create
         public IActionResult Create()
         {

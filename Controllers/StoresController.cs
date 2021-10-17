@@ -24,24 +24,6 @@ namespace сoursework.Controllers
             return View(await _context.stores.ToListAsync());
         }
 
-        // GET: Stores/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var store = await _context.stores
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (store == null)
-            {
-                return NotFound();
-            }
-
-            return View(store);
-        }
-
         // GET: Stores/Create
         public IActionResult Create()
         {

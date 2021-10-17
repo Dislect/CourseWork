@@ -25,24 +25,6 @@ namespace сoursework.Controllers
             return View(await _context.positions.ToListAsync());
         }
 
-        // GET: Positions/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var position = await _context.positions
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (position == null)
-            {
-                return NotFound();
-            }
-
-            return View(position);
-        }
-
         // GET: Positions/Create
         public IActionResult Create()
         {

@@ -5,27 +5,27 @@
     Layout = "_Layout";
 }
 
-<h1>Create</h1>
+<h1>Создание</h1>
 
-<h4>Genre</h4>
+<h4>Жанр</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="titleGenre" class="control-label"></label>
+                <label asp-for="titleGenre" class="control-label">Наименование жанра</label>
                 <input asp-for="titleGenre" class="form-control" />
                 <span asp-validation-for="titleGenre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Создать" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Вернуться назад</a>
 </div>
 

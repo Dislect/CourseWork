@@ -24,24 +24,6 @@ namespace сoursework.Controllers
             return View(await _context.publishers.ToListAsync());
         }
 
-        // GET: Publishers/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var publisher = await _context.publishers
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (publisher == null)
-            {
-                return NotFound();
-            }
-
-            return View(publisher);
-        }
-
         // GET: Publishers/Create
         public IActionResult Create()
         {

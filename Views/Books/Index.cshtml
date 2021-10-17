@@ -5,40 +5,48 @@
     Layout = "_Layout";
 }
 
-<h1>Index</h1>
+<h1>Таблица Books</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="buttom" asp-action="Create">Добавить новую книгу</a>
 </p>
-<table class="table">
+<br />
+<table class="Table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.title)
+                Название
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.description)
+                Описание
+            </th>
+            @*<th>
+            Id Автора
+        </th>*@
+            <th>
+                Цена
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.cost)
+                Количество
+            </th>
+            @*<th>
+            Id Издателя
+        </th>*@
+            <th>
+                Год
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.quantity)
+                Путь к картинке
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.year)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.imgPath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.imgAlterText)
+                Альтернативный текст
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.title)
@@ -62,11 +70,10 @@
                 @Html.DisplayFor(modelItem => item.imgAlterText)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.id">Изменить</a> <br />
+                <a asp-action="Delete" asp-route-id="@item.id">Удалить</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

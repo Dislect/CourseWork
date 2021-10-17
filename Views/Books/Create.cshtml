@@ -5,57 +5,57 @@
     Layout = "_Layout";
 }
 
-<h1>Create</h1>
+<h1>Создание</h1>
 
-<h4>Book</h4>
+<h4>Книга</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="title" class="control-label"></label>
+                <label asp-for="title" class="control-label">Название</label>
                 <input asp-for="title" class="form-control" />
                 <span asp-validation-for="title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="description" class="control-label"></label>
+                <label asp-for="description" class="control-label">Описание</label>
                 <input asp-for="description" class="form-control" />
                 <span asp-validation-for="description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="cost" class="control-label"></label>
+                <label asp-for="cost" class="control-label">Цена</label>
                 <input asp-for="cost" class="form-control" />
                 <span asp-validation-for="cost" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="quantity" class="control-label"></label>
+                <label asp-for="quantity" class="control-label">Количество</label>
                 <input asp-for="quantity" class="form-control" />
                 <span asp-validation-for="quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="year" class="control-label"></label>
+                <label asp-for="year" class="control-label">Год</label>
                 <input asp-for="year" class="form-control" />
                 <span asp-validation-for="year" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="imgPath" class="control-label"></label>
+                <label asp-for="imgPath" class="control-label">Путь к картинке</label>
                 <input asp-for="imgPath" class="form-control" />
                 <span asp-validation-for="imgPath" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="imgAlterText" class="control-label"></label>
+                <label asp-for="imgAlterText" class="control-label">Альтернативный текст</label>
                 <input asp-for="imgAlterText" class="form-control" />
                 <span asp-validation-for="imgAlterText" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Создать" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Вернуться назад</a>
 </div>
 

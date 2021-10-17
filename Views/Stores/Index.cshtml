@@ -5,38 +5,39 @@
     Layout = "_Layout";
 }
 
-<h1>Index</h1>
+<h1>Таблица Stores</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Добавить новый книжный магазин</a>
 </p>
-<table class="table">
+<br />
+<table class="Table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.address)
+                Адресс
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.area)
+                Площадь
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.area)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.area)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Изменить</a> <br />
+                    <a asp-action="Delete" asp-route-id="@item.id">Удалить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

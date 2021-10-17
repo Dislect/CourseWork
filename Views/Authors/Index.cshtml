@@ -5,44 +5,45 @@
     Layout = "_Layout";
 }
 
-<h1>Index</h1>
+<h1>Таблица Authors</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="buttom" asp-action="Create">Добавить нового автора</a>
 </p>
-<table class="table">
+<br />
+<table class="Table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.name)
+                Имя
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.surname)
+                Фамилия
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.patronymic)
+                Отчество
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.patronymic)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.patronymic)
+                </td>
+                <td> 
+                    <a asp-action="Edit" asp-route-id="@item.id">Изменить</a> <br />
+                    <a asp-action="Delete" asp-route-id="@item.id">Удалить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
