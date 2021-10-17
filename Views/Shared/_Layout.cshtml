@@ -1,6 +1,4 @@
 ﻿@*Главный шаблон веб приложения*@
-@model HomeViewModel
-
 <!DOCTYPE html>
 <html>
 
@@ -13,26 +11,63 @@
 </head>
 
 <body>
-    <nav class="menu">
+    <nav class="menu" id="menu">
         <ul>
-            @foreach (var hierarchicalMenuItem in Model.menu.GetHierarchicalMenuItems())
-            {
-                <li>
-                    <a href="@hierarchicalMenuItem.GetHref()">@hierarchicalMenuItem.GetTitle()</a>
-                    @if (hierarchicalMenuItem.GetMenuItems().Count() != 0)
-                    {
-                        <ul>
-                            @foreach (var menuItem in hierarchicalMenuItem.GetMenuItems())
-                            {
-                                <li>
-                                    <a href="@menuItem.GetHref()">@menuItem.GetTitle()</a>
-                                </li>
-                            }
-                        </ul>
-                    }
-                </li>
-            }
+            <li>
+                <a href="/Home">Быстрый просмотр</a>
+                <ul>
+                    <li>
+                        <a href="/Home/ViewAuthors">Авторы</a>
+                    </li>
+                    <li>
+                        <a href="/Home/ViewBooks">Книги</a>
+                    </li>
+                    <li>
+                        <a href="/Home/ViewEmployees">Сотрудники</a>
+                    </li>
+                    <li>
+                        <a href="/Home/ViewGenres">Жанры</a>
+                    </li>
+                    <li>
+                        <a href="/Home/ViewPositions">Должности</a>
+                    </li>
+                    <li>
+                        <a href="/Home/ViewPublishers">Издатели</a>
+                    </li>
+                    <li>
+                        <a href="/Home/ViewStores">Магазины</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="/">Изменение, создание и удаление данных</a>
+                <ul>
+                    <li>
+                        <a href="/Authors/Index">Авторы</a>
+                    </li>
+                    <li>
+                        <a href="/Books/Index">Книги</a>
+                    </li>
+                    <li>
+                        <a href="/Employees/Index">Сотрудники</a>
+                    </li>
+                    <li>
+                        <a href="/Genres/Index">Жанры</a>
+                    </li>
+                    <li>
+                        <a href="/Positions/Index">Должности</a>
+                    </li>
+                    <li>
+                        <a href="/Publishers/Index">Издатели</a>
+                    </li>
+                    <li>
+                        <a href="/Stores/Index">Магазины</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
+        <script type="text/javascript">shineLinks('menu');</script>
     </nav>
 
     <main>
@@ -41,8 +76,8 @@
 
     <footer>
         <p>
-            © "Книжная информационная система", 2021. Все права защищены.
-        </p>     
+            © "ИС для книжного магазина", 2021. Все права защищены.
+        </p>
     </footer>
 
 </body>

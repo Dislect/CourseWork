@@ -15,5 +15,6 @@ namespace сoursework.Data.Models.ObjectsDB
         public string imgAlterText { get; set; }
         public string phoneNumber { get; set; }
         public virtual Store idStore { get; set; }
+        public virtual Position idPosition { get; set; }
     }
 }

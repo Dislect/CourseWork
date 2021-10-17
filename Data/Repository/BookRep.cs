@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,39 +17,74 @@ namespace сoursework.Data.Repository
             _dBContext = dBContext;
         }
 
-        public List<Author> GetAuthors()
+        public async Task<List<Author>> GetAuthors()
         {
-            return _dBContext.authors.ToList();
+            return await _dBContext.authors.ToListAsync();
         }
 
-        public List<Book> GetBooks()
+        public async Task<List<Book>> GetBooksThis(Author author)
         {
-            return _dBContext.books.ToList();
+            return await _dBContext.books.Where(x => x.author.name == author.name).ToListAsync();
         }
 
-        public List<Employee> GetEmployees()
+        public async Task<List<Book>> GetBooks()
         {
-            return _dBContext.employees.ToList();
+            return await _dBContext.books.ToListAsync();
         }
 
-        public List<Genre> GetGenres()
+        public async Task<List<Employee>> GetEmployees()
         {
-            return _dBContext.genres.ToList();
+            return await _dBContext.employees.ToListAsync();
         }
 
-        public List<Position> GetPositions()
+        public string GetAddressThis(Employee employee)
         {
-            return _dBContext.positions.ToList();
+            return _dBContext.stores.FirstOrDefault(x => x.employees.Contains(employee)).address.ToString();
         }
 
-        public List<Publisher> GetPublishers()
+        public async Task<List<Genre>> GetGenres()
         {
-            return _dBContext.publishers.ToList();
+            return await _dBContext.genres.ToListAsync();
         }
 
-        public List<Store> GetStores()
+        public async Task<List<Book>> GetBooksThis(Genre genre)
         {
-            return _dBContext.stores.ToList();
+            return await _dBContext.books.Where(x => x.genres.Contains(genre)).ToListAsync();
+        }
+
+        public async Task<List<Position>> GetPositions()
+        {
+            return await _dBContext.positions.ToListAsync();
+        }
+
+        public async Task<List<Employee>> GetEmployeesThis(Position position)
+        {
+            return await _dBContext.employees.Where(x => x.idPosition == position).ToListAsync();
+        }
+
+        public async Task<List<Publisher>> GetPublishers()
+        {
+            return await _dBContext.publishers.ToListAsync();
+        }
+
+        public async Task<List<Book>> GetBooksThis(Publisher publisher)
+        {
+            return await _dBContext.books.Where(x => x.publisher == publisher).ToListAsync();
+        }
+
+        public async Task<List<Store>> GetStores()
+        {
+            return await _dBContext.stores.ToListAsync();
+        }
+
+        public async Task<List<Book>> GetBooksThis(Store store)
+        {
+            return await _dBContext.books.Where(x => x.stores.Contains(store)).ToListAsync();
+        }
+
+        public async Task<List<Employee>> GetEmployeesThis(Store store)
+        {
+            return await _dBContext.employees.Where(x => x.idStore == store).ToListAsync();
         }
     }
 }

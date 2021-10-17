@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using сoursework.Data.Interfaces;
 using сoursework.Data.Models;
-using сoursework.Data.Models.Menu;
 using сoursework.Data.Repository;
 using сoursework.View_Models;
 
@@ -13,17 +11,14 @@ namespace сoursework.Controllers
 {
     public class HomeController : Controller
     {
-        private IMenu _menu;
         private BookRep _bookRep;
         private HomeViewModel _obj;
 
-        public HomeController(IMenu menu, BookRep bookRep)
+        public HomeController(BookRep bookRep)
         {
-            _menu = menu;
             _bookRep = bookRep;
             _obj = new()
             {
-                menu = _menu,
                 bookRep = _bookRep
             };
         }
@@ -33,7 +28,37 @@ namespace сoursework.Controllers
             return View(_obj);
         }
 
+        public ViewResult ViewAuthors()
+        {
+            return View(_obj);
+        }
+
         public ViewResult ViewBooks()
+        {
+            return View(_obj);
+        }
+
+        public ViewResult ViewEmployees()
+        {
+            return View(_obj);
+        }
+
+        public ViewResult ViewGenres()
+        {
+            return View(_obj);
+        }
+
+        public ViewResult ViewPositions()
+        {
+            return View(_obj);
+        }
+
+        public ViewResult ViewPublishers()
+        {
+            return View(_obj);
+        }
+
+        public ViewResult ViewStores()
         {
             return View(_obj);
         }

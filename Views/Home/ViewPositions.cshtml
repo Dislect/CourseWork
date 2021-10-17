@@ -1,0 +1,33 @@
+﻿@model HomeViewModel
+@{
+    Layout = "_Layout";
+}
+
+<table class="Table">
+    <thead>
+        <tr>
+            <td>Должность</td>
+            <td>Сотрудники</td>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        @{
+            foreach (var position in Model.bookRep.GetPositions().Result)
+            {
+                <tr>
+                    <td>
+                        @position.employeePosition
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (var employee in Model.bookRep.GetEmployeesThis(position).Result)
+                            {
+                                <li>@employee.surname</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

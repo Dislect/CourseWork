@@ -2,10 +2,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using сoursework.Data.Models.Menu;
 using Microsoft.EntityFrameworkCore;
 using сoursework.Data.Models;
-using сoursework.Data.Interfaces;
 using сoursework.Data.Repository;
 
 namespace сoursework
@@ -26,7 +24,6 @@ namespace сoursework
         {
             services.AddDbContext<BookStoreDBContext>(options => options.UseSqlServer(_connection));
 
-            services.AddSingleton<IMenu, Menu>();
             services.AddTransient<BookRep>();
            
             services.AddMvc(option => option.EnableEndpointRouting = false)

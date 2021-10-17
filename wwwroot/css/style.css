@@ -48,6 +48,10 @@ nav {
             background: #6c757d; /*добавляем эффект при наведении*/
         }
 
+        .menu ul a.active {
+            background: #6c757d; /*добавляем эффект при наведении*/
+        }
+
     .menu ul li {
         float: left; /*Размещаем список горизонтально для реализации меню*/
         position: relative; /*задаем позицию для позиционирования*/
@@ -84,4 +88,26 @@ footer {
     line-height: 50px;
 }
 
+.Table {
 
+    width: 70%; /* Ширина таблицы */
+    border: 1px solid #6c757d; /* Рамка вокруг таблицы */
+    margin: auto; /* Выравниваем таблицу по центру окна  */
+    border-collapse:collapse;
+}
+
+    .Table thead {
+        font-weight: bold;
+        border: 1px solid #6c757d; /* Параметры рамки */
+    }
+
+    .Table tr, td {
+        padding-left: 5px;
+        border: 1px solid #6c757d; /* Параметры рамки */
+    }
+
+    .Table ul {
+        list-style: none; /*убираем маркеры списка*/
+        padding-left: 0; /*убираем отступы*/
+    }
+   

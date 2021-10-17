@@ -1,0 +1,41 @@
+﻿@model HomeViewModel
+@{
+    Layout = "_Layout";
+}
+
+<table class="Table">
+    <thead>
+        <tr>
+            <td>Директор</td>
+            <td>Почта</td>
+            <td>Адрес</td>
+            <td>Книги издателя</td>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        @{
+            foreach (var publisher in Model.bookRep.GetPublishers().Result)
+            {
+                <tr>
+                    <td>
+                        @publisher.director
+                    </td>
+                    <td>
+                        @publisher.email
+                    </td>
+                    <td>
+                        @publisher.address
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (var book in @Model.bookRep.GetBooksThis(publisher).Result)
+                            {
+                                <li>@book.title</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

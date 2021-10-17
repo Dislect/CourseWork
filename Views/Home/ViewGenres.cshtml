@@ -1,0 +1,34 @@
+﻿@model HomeViewModel
+@{
+    Layout = "_Layout";
+}
+
+<table class="Table">
+    <thead>
+        <tr>
+            <td>Назавние жанра</td>
+            <td>Книги по жанру</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        @{
+            foreach (var genre in Model.bookRep.GetGenres().Result)
+            {
+                <tr>
+                    <td>
+                        @genre.titleGenre
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (var book in @Model.bookRep.GetBooksThis(genre).Result)
+                            {
+                                <li>@book.title</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

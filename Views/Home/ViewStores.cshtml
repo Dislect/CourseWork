@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model HomeViewModel
+@{
+    Layout = "_Layout";
+}
+
+<table class="Table">
+    <thead>
+        <tr>
+            <td>Адрес магазина</td>
+            <td>Сотрудники магазина</td>
+            <td>Книги магазина и их количество</td>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        @{
+            foreach (var store in Model.bookRep.GetStores().Result)
+            {
+                <tr>
+                    <td>
+                        @store.address
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (var employee in @Model.bookRep.GetEmployeesThis(store).Result)
+                            {
+                                <li>@employee.surname</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (var book in @Model.bookRep.GetBooksThis(store).Result)
+                            {
+                                <li>@book.title - @book.quantity шт.</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
