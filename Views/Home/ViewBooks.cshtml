@@ -2,13 +2,14 @@
 @{
     Layout = "_Layout";
 }
-
+<h1>Количество книг на складе</h1>
+<hr />
 <table class="Table">
     <thead>
         <tr>
-            <td></td>
-            <td></td>
-            <td>Количество</td>
+            <th></th>
+            <th></th>
+            <th>Количество</th>
         </tr>
     </thead>
     <tbody id="tbody">
@@ -17,7 +18,7 @@
             {
                 <tr>
                     <td>
-                        <img src="@book.imgPath" alt="@book.imgAlterText Text"/>
+                        <img src="@book.imgPath" alt="@book.imgAlterText Text" />
                     </td>
                     <td>
                         <h3>@book.title</h3>
