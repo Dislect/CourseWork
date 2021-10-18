@@ -15,6 +15,9 @@
     <thead>
         <tr>
             <th>
+                ID
+            </th>
+            <th>
                 Наименование жанра
             </th>
             <th></th>
@@ -24,6 +27,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.titleGenre)
                 </td>

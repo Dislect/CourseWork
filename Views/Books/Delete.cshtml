@@ -12,48 +12,27 @@
     <h4>Книга</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.title)
+        <dt>
+            Название: @Html.DisplayFor(model => model.title)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.description)
+        <dt>
+            Описание: @Html.DisplayFor(model => model.description)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.cost)
+        <dt>
+            Цена: @Html.DisplayFor(model => model.cost)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.cost)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.quantity)
+        <dt>
+            Количество: @Html.DisplayFor(model => model.quantity)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.quantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.year)
+        <dt>
+            Год: @Html.DisplayFor(model => model.year)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.year)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.imgPath)
+        <dt>
+            Путь к картинке: @Html.DisplayFor(model => model.imgPath)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.imgPath)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.imgAlterText)
+        <dt>
+            Альтернативный текст: @Html.DisplayFor(model => model.imgAlterText)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.imgAlterText)
-        </dd>
     </dl>
     
     <form asp-action="Delete">

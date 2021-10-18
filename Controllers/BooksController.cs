@@ -32,10 +32,12 @@ namespace сoursework.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,title,description,cost,quantity,year,imgPath,imgAlterText")] Book book)
+        public async Task<IActionResult> Create([Bind("id,title,description,cost,quantity,year,imgPath,imgAlterText")] Book book, int authorId, int publisherId)
         {
             if (ModelState.IsValid)
             {
+                book.author = await _context.authors.FirstOrDefaultAsync(x => x.id == authorId);
+                book.publisher = await _context.publishers.FirstOrDefaultAsync(x => x.id == publisherId);
                 _context.Add(book);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -61,7 +63,7 @@ namespace сoursework.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,title,description,cost,quantity,year,imgPath,imgAlterText")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("id,title,description,cost,quantity,year,imgPath,imgAlterText")] Book book, int authorId, int publisherId)
         {
             if (id != book.id)
             {
@@ -72,6 +74,8 @@ namespace сoursework.Controllers
             {
                 try
                 {
+                    book.author = await _context.authors.FirstOrDefaultAsync(x => x.id == authorId);
+                    book.publisher = await _context.publishers.FirstOrDefaultAsync(x => x.id == publisherId);
                     _context.Update(book);
                     await _context.SaveChangesAsync();
                 }

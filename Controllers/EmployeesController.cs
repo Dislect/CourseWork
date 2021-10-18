@@ -33,10 +33,12 @@ namespace сoursework.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,name,surname,patronymic,imgPath,imgAlterText,phoneNumber")] Employee employee)
+        public async Task<IActionResult> Create([Bind("id,name,surname,patronymic,imgPath,imgAlterText,phoneNumber")] Employee employee, int storeId, int positionId)
         {
             if (ModelState.IsValid)
             {
+                employee.idStore = await _context.stores.FirstOrDefaultAsync(x => x.id == storeId);
+                employee.idPosition = await _context.positions.FirstOrDefaultAsync(x => x.id == positionId);
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -62,7 +64,7 @@ namespace сoursework.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,name,surname,patronymic,imgPath,imgAlterText,phoneNumber")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("id,name,surname,patronymic,imgPath,imgAlterText,phoneNumber")] Employee employee, int storeId, int positionId)
         {
             if (id != employee.id)
             {
@@ -73,6 +75,8 @@ namespace сoursework.Controllers
             {
                 try
                 {
+                    employee.idStore = await _context.stores.FirstOrDefaultAsync(x => x.id == storeId);
+                    employee.idPosition = await _context.positions.FirstOrDefaultAsync(x => x.id == positionId);
                     _context.Update(employee);
                     await _context.SaveChangesAsync();
                 }

@@ -15,37 +15,45 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
             <div class="form-group">
-                <label asp-for="title" class="control-label"></label>
+                <label asp-for="title" class="control-label">Название</label>
                 <input asp-for="title" class="form-control" />
                 <span asp-validation-for="title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="description" class="control-label"></label>
+                <label for="authorId" class="control-label">ID Автора</label>
+                <input name="authorId" type="number" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="description" class="control-label">Описание</label>
                 <input asp-for="description" class="form-control" />
                 <span asp-validation-for="description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="cost" class="control-label"></label>
+                <label asp-for="cost" class="control-label">Цена</label>
                 <input asp-for="cost" class="form-control" />
                 <span asp-validation-for="cost" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="quantity" class="control-label"></label>
+                <label asp-for="quantity" class="control-label">Количество</label>
                 <input asp-for="quantity" class="form-control" />
                 <span asp-validation-for="quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="year" class="control-label"></label>
+                <label for="publisherId" class="control-label">ID Издателя</label>
+                <input name="publisherId" type="number" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="year" class="control-label">Год</label>
                 <input asp-for="year" class="form-control" />
                 <span asp-validation-for="year" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="imgPath" class="control-label"></label>
+                <label asp-for="imgPath" class="control-label">Путь к картинке</label>
                 <input asp-for="imgPath" class="form-control" />
                 <span asp-validation-for="imgPath" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="imgAlterText" class="control-label"></label>
+                <label asp-for="imgAlterText" class="control-label">Альтернативный текст</label>
                 <input asp-for="imgAlterText" class="form-control" />
                 <span asp-validation-for="imgAlterText" class="text-danger"></span>
             </div>

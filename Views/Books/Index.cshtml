@@ -15,23 +15,20 @@
     <thead>
         <tr>
             <th>
+                ID
+            </th>
+            <th>
                 Название
             </th>
             <th>
                 Описание
             </th>
-            @*<th>
-            Id Автора
-        </th>*@
             <th>
                 Цена
             </th>
             <th>
                 Количество
             </th>
-            @*<th>
-            Id Издателя
-        </th>*@
             <th>
                 Год
             </th>
@@ -48,6 +45,9 @@
         @foreach (var item in Model)
         {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.title)
             </td>
