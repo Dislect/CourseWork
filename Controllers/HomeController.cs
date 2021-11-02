@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using сoursework.Data.Models;
 using сoursework.Data.Repository;
 using сoursework.View_Models;
 

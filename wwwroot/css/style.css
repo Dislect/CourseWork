@@ -10,7 +10,7 @@ body {
 
 main {
     margin: auto; /* выравнивание по центру */
-    height: 700px;
+    height: 800px;
     width: 80%;
 }
 
@@ -78,7 +78,6 @@ footer {
     width: 90%; /* ширина */
     padding: 5px 0px 5px 0px; /* отступы внутри */
     background: #343a40; /*добавляем фон всему меню*/
-    height: 50px; /*задаем высоту*/
     color: #fff;
     font-size: 12pt; /* размер шрифта */
     margin: auto; /* выравнивание по центру */
@@ -86,6 +85,7 @@ footer {
     text-align: center; /*выравниваение текста по центру*/
     height: 50px; /*задаем высоту*/
     line-height: 50px;
+    margin-bottom: 25px; /*делаем отступ сверху*/
 }
 
 .Table {
@@ -113,4 +113,13 @@ th {
         list-style: none; /*убираем маркеры списка*/
         padding-left: 0; /*убираем отступы*/
     }
-   
+
+img {
+    margin: 10px;
+    padding: 0;
+    width: 75px;
+    height: 100px;
+    background: #c2c2c2;
+    border: 1px solid #000;
+    border-radius: 3px;
+}

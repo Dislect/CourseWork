@@ -35,7 +35,17 @@
                         <ul>
                             @foreach (var book in @Model.bookRep.GetBooksThis(store).Result)
                             {
-                                <li>@book.title - @book.quantity шт.</li>
+                                <li>
+                                    @book.title -
+                                    @if (book.quantity == 0)
+                                    {
+                                        <span style="color: red"> @book.quantity шт.</span>
+                                    }
+                                    else
+                                    {
+                                        <span> @book.quantity шт.</span>
+                                    }
+                                </li>
                             }
                         </ul>
                     </td>

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace сoursework.Data.Models.ObjectsDB
+﻿namespace сoursework.Data.Models.ObjectsDB
 {
     public class Employee
     {

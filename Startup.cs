@@ -10,7 +10,7 @@ namespace сoursework
 {
     public class Startup
     {
-        private string _connection { get; set; }
+        private string _connection { get; }
 
         public Startup(IConfiguration configuration)
         {

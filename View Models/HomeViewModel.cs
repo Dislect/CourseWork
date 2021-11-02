@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using сoursework.Data.Repository;
+﻿using сoursework.Data.Repository;
 
 namespace сoursework.View_Models
 {
