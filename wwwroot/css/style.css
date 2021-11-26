@@ -11,6 +11,7 @@ body {
 main {
     margin: auto; /* выравнивание по центру */
     width: 80%;
+    min-height: calc(80vh - 50px);
 }
 
 nav {
@@ -123,27 +124,84 @@ img {
     border-radius: 3px;
 }
 
-.form-control {
-    border: 1px solid #cccccc;
-    border-radius: 3px;
-    background: #ffffff !important; 
-    outline: none; 
-    height: 24px; 
-    width: 250px; 
-    margin-bottom: 10px;
+input[type=submit] {
+    width: 120px;
+    text-align: center;
+    display: block;
+    font-family: arial;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    color: #6c757d;
+    border: #1a1a1a 1px solid;
+    padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: .5s;
+    border-radius: 0px;
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
-/*a {
-    background-color: #f4511e;
+input[type=submit]:hover {
+    top: 5px;
+    transition: .5s;
+    border: #1071FF 1px solid;
+    color: #1071FF;
+}
+
+.button-action {
+    width: 120px;
+    text-align: center;
+    display: block;
+    font-family: arial;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    color: #6c757d;
+    border: #1a1a1a 1px solid;
+    padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    transition: .5s;
+    border-radius: 0px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+    .button-action:hover {
+        top: 5px;
+        transition: .5s;
+        border: #1071FF 1px solid;
+        color: #1071FF;
+    }
+
+
+.Table a {
+    background-color: #343a40;
     border: none;
     color: white;
-    padding: 16px 32px;
+    padding: 10px 10px;
     text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
-    opacity: 0.6;
-    transition: 0.3s;
-    display: inline-block;
     text-decoration: none;
-    cursor: pointer;
-}*/
+    display: inline-block;
+    font-size: 14px;
+    width: 60px;
+}
+
+    .Table a:hover {
+        color: white;
+        background-color: ;
+    }
+
+    .Table br + a {
+        margin-top: 2px;
+        background-color: #f44336;
+        border: none;
+        color: white;
+        padding: 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+    }
