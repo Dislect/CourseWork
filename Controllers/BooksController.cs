@@ -18,7 +18,7 @@ namespace сoursework.Controllers
         // GET: Books
         public async Task<IActionResult> Index()
         {
-            return View(await _context.books.ToListAsync());
+            return View(await _context.books.Include(x => x.author).ToListAsync());
         }
 
         // GET: Books/Create
@@ -29,11 +29,11 @@ namespace сoursework.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,title,description,cost,quantity,year,imgPath,imgAlterText")] Book book, int authorId, int publisherId)
+        public async Task<IActionResult> Create([Bind("id,title,description,cost,quantity,year,imgPath,imgAlterText,author")] Book book, int authorId, int publisherId)
         {
             if (ModelState.IsValid)
             {
-                book.author = await _context.authors.FirstOrDefaultAsync(x => x.id == authorId);
+                //book.author = await _context.authors.FirstOrDefaultAsync(x => x.id == authorId);
                 book.publisher = await _context.publishers.FirstOrDefaultAsync(x => x.id == publisherId);
                 _context.Add(book);
                 await _context.SaveChangesAsync();
@@ -55,6 +55,8 @@ namespace сoursework.Controllers
             {
                 return NotFound();
             }
+
+            book = await _context.books.Include(x => x.author).Include(x => x.publisher).FirstOrDefaultAsync(x => x == book);
             return View(book);
         }
 

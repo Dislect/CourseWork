@@ -14,12 +14,12 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="employeePosition" class="control-label">Должность</label>
+                <label asp-for="employeePosition" class="control-label">Должность</label><br>
                 <input asp-for="employeePosition" class="form-control" />
                 <span asp-validation-for="employeePosition" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="salary" class="control-label">Зарплата</label>
+                <label asp-for="salary" class="control-label">Зарплата</label><br>
                 <input asp-for="salary" class="form-control" />
                 <span asp-validation-for="salary" class="text-danger"></span>
             </div>

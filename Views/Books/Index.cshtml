@@ -38,6 +38,9 @@
             <th>
                 Альтернативный текст
             </th>
+            <th>
+                Автор книги
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -68,6 +71,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.imgAlterText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.author.surname)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Изменить</a> <br />
