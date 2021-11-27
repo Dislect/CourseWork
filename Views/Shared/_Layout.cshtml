@@ -1,4 +1,5 @@
-﻿@*Главный шаблон веб приложения*@
+﻿@using Microsoft.AspNetCore.Server.IIS.Core
+@*Главный шаблон веб приложения*@
 <!DOCTYPE html>
 <html>
 
@@ -14,58 +15,72 @@
     <nav class="menu" id="menu">
         <ul>
             <li>
-                <a href="/">Быстрый просмотр</a>
+                <a asp-action="Home" asp-controller="Home">Быстрый просмотр</a>
                 <ul>
                     <li>
-                        <a href="/Home/ViewAuthors">Авторы и их книги</a>
+                        <a asp-controller="Home" asp-action="ViewAuthors">Авторы и их книги</a>
                     </li>
                     <li>
-                        <a href="/Home/ViewBooks">Количество книг на складе</a>
+                        <a asp-controller="Home" asp-action="ViewBooks">Количество книг на складе</a>
                     </li>
                     <li>
-                        <a href="/Home/ViewEmployees">Сотрудники и контактные данные</a>
+                        <a asp-controller="Home" asp-action="ViewEmployees">Сотрудники и контактные данные</a>
                     </li>
                     <li>
-                        <a href="/Home/ViewGenres">Жанры и книги по ним</a>
+                        <a asp-controller="Home" asp-action="ViewGenres">Жанры и книги по ним</a>
                     </li>
                     <li>
-                        <a href="/Home/ViewPositions">Должности и сотрудники</a>
+                        <a asp-controller="Home" asp-action="ViewPositions">Должности и сотрудники</a>
                     </li>
                     <li>
-                        <a href="/Home/ViewPublishers">Издатели и их книги</a>
+                        <a asp-controller="Home" asp-action="ViewPublishers">Издатели и их книги</a>
                     </li>
                     <li>
-                        <a href="/Home/ViewStores">Информация о магазинах</a>
+                        <a asp-controller="Home" asp-action="ViewStores">Информация о магазинах</a>
                     </li>
                 </ul>
             </li>
-
-            <li>
-                <a href="/Home">Изменение, создание и удаление данных</a>
-                <ul>
-                    <li>
-                        <a href="/Authors/Index">Авторы</a>
-                    </li>
-                    <li>
-                        <a href="/Books/Index">Книги</a>
-                    </li>
-                    <li>
-                        <a href="/Employees/Index">Сотрудники</a>
-                    </li>
-                    <li>
-                        <a href="/Genres/Index">Жанры</a>
-                    </li>
-                    <li>
-                        <a href="/Positions/Index">Должности</a>
-                    </li>
-                    <li>
-                        <a href="/Publishers/Index">Издатели</a>
-                    </li>
-                    <li>
-                        <a href="/Stores/Index">Магазины</a>
-                    </li>
-                </ul>
+            @if (ViewContext.HttpContext.User.IsInRole("employee"))
+            {
+                <li>
+                    <a asp-action="Home" asp-controller="Home">Изменение, создание и удаление данных</a>
+                    <ul>
+                        <li>
+                            <a asp-controller="Authors" asp-action="Index">Авторы</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Books" asp-action="Index">Книги</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Employees" asp-action="Index">Сотрудники</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Genres" asp-action="Index">Жанры</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Positions" asp-action="Index">Должности</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Publishers" asp-action="Index">Издатели</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Stores" asp-action="Index">Магазины</a>
+                        </li>
+                    </ul>
+                </li>
+            }
+            <li class="right">
+                <a asp-controller="Account" asp-action="Login">Войти</a>
             </li>
+            <li class="right">
+                <a asp-controller="Account" asp-action="Register">Регистрация</a>
+            </li>
+            @if (ViewContext.HttpContext.User.IsInRole("employee"))
+            {
+                <li class="right">
+                    <a asp-controller="Account" asp-action="Logout">Выйти</a>
+                </li>
+            }
         </ul>
         <script type="text/javascript">shineLinks('menu');</script>
     </nav>

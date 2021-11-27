@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using сoursework.Data.Models;
@@ -7,6 +8,7 @@ using сoursework.Data.Models.ObjectsDB;
 
 namespace сoursework.Controllers
 {
+    [Authorize(Roles = "employee")]
     public class PositionsController : Controller
     {
         private readonly BookStoreDBContext _context;

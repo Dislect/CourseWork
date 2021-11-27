@@ -14,6 +14,7 @@ main {
     min-height: calc(80vh - 50px);
 }
 
+
 nav {
     margin: auto; /* выравнивание по центру */
     margin-bottom: 2%; /* отступ снизу */
@@ -27,6 +28,7 @@ nav {
     margin-top: 25px; /*делаем отступ сверху*/
     background: #343a40; /*добавляем фон всему меню*/
     height: 50px; /*задаем высоту*/
+    display: flex;
 }
 
     .menu ul a {
@@ -53,9 +55,9 @@ nav {
         }
 
     .menu ul li {
-        float: left; /*Размещаем список горизонтально для реализации меню*/
         position: relative; /*задаем позицию для позиционирования*/
     }
+
 
 /*Стили для скрытого выпадающего меню*/
 .menu li > ul {
@@ -205,3 +207,6 @@ input[type=submit]:hover {
         display: inline-block;
         font-size: 14px;
     }
+
+.align-center {
+}

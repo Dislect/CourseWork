@@ -4,7 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using сoursework.Data.Models;
+using сoursework.Data.Models.Identity;
 using сoursework.Data.Repository;
+using Microsoft.AspNetCore.Identity;
 
 namespace сoursework
 {
@@ -22,7 +24,22 @@ namespace сoursework
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BookStoreDBContext>(options => options.UseSqlServer(_connection));
+            services.AddDbContext<BookStoreDBContext>(options =>
+                options.UseSqlServer(_connection));
+
+            services.AddDbContext<IdentityContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
+
+            services.AddIdentity<User, IdentityRole>(opts =>
+                    {
+                        opts.Password.RequiredLength = 3;   // минимальная длина
+                        opts.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
+                        opts.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
+                        opts.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
+                        opts.Password.RequireDigit = false; // требуются ли цифры
+                    }
+                )
+                .AddEntityFrameworkStores<IdentityContext>();
 
             services.AddTransient<BookRep>();
            
@@ -38,11 +55,15 @@ namespace сoursework
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();    // подключение аутентификации
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Home}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

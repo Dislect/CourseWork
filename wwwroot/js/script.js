@@ -3,7 +3,7 @@
         var el = document.getElementById(id).getElementsByTagName('a');
         var url = document.location.href;
         for (var i = 0; i < el.length; i++) {
-            if (url == el[i].href) {
+            if (url == el[i].href && !url.includes("/Home/Home")) {
                 el[i].className += 'active';
             };
         };

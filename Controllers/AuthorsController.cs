@@ -1,11 +1,13 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using сoursework.Data.Models;
 
 namespace сoursework.Controllers
 {
+    [Authorize(Roles = "employee")]
     public class AuthorsController : Controller
     {
         private readonly BookStoreDBContext _context;
