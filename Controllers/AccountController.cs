@@ -13,14 +13,11 @@ namespace сoursework.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private RoleManager<IdentityRole> _roleManager;
-        private IdentityRole role;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
         }
 
         [HttpGet]
@@ -39,9 +36,8 @@ namespace сoursework.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRolesAsync(user, new List<string>() { "employee" });
                     // установка куки
-                    var roles = new List<string>() { "employee" };
-                    await _userManager.AddToRolesAsync(user, roles);
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Home", "Home");
                 }

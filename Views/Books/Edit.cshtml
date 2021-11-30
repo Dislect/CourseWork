@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "_Layout";
 }
 
 <h1>Изменить</h1>
@@ -41,6 +40,14 @@
             <div class="form-group">
                 <label for="publisherId" class="control-label">ID Издателя</label><br>
                 <input name="publisherId" type="number" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="addGenreId" class="control-label">ID нового жанра (не обязательное поле)</label><br>
+                <input name="addGenreId" type="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="delGenreId" class="control-label">ID жанра для удаления (не обязательное поле)</label><br>
+                <input name="delGenreId" type="text" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="year" class="control-label">Год</label><br>

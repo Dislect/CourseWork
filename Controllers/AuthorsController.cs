@@ -17,19 +17,16 @@ namespace сoursework.Controllers
             _context = context;
         }
 
-        // GET: Authors
         public async Task<IActionResult> Index()
         {
             return View(await _context.authors.ToListAsync());
         }
 
-        // GET: Authors/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Authors/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,name,surname,patronymic")] Author author)
@@ -43,7 +40,6 @@ namespace сoursework.Controllers
             return View(author);
         }
 
-        // GET: Authors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -59,7 +55,6 @@ namespace сoursework.Controllers
             return View(author);
         }
 
-        // POST: Authors/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,name,surname,patronymic")] Author author)
@@ -92,7 +87,6 @@ namespace сoursework.Controllers
             return View(author);
         }
 
-        // GET: Authors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -110,7 +104,6 @@ namespace сoursework.Controllers
             return View(author);
         }
 
-        // POST: Authors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

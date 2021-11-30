@@ -17,13 +17,11 @@ namespace сoursework.Controllers
             _context = context;
         }
 
-        // GET: Books
         public async Task<IActionResult> Index()
         {
             return View(await _context.books.Include(x => x.author).Include(x => x.publisher).ToListAsync());
         }
 
-        // GET: Books/Create
         public IActionResult Create()
         {
             return View();
@@ -31,12 +29,14 @@ namespace сoursework.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,title,description,cost,quantity,year,imgPath,imgAlterText,author")] Book book, int authorId, int publisherId)
+        public async Task<IActionResult> Create([Bind("id,title,description,cost,quantity,year,imgPath,imgAlterText,author")] Book book, int authorId, int publisherId, int genreId)
         {
             if (ModelState.IsValid)
             {
-                //book.author = await _context.authors.FirstOrDefaultAsync(x => x.id == authorId);
+                book.author = await _context.authors.FirstOrDefaultAsync(x => x.id == authorId);
                 book.publisher = await _context.publishers.FirstOrDefaultAsync(x => x.id == publisherId);
+                book.genres.Add(await _context.genres.FirstOrDefaultAsync(x => x.id == genreId));
+
                 _context.Add(book);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -44,7 +44,6 @@ namespace сoursework.Controllers
             return View(book);
         }
 
-        // GET: Books/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -58,13 +57,13 @@ namespace сoursework.Controllers
                 return NotFound();
             }
 
-            book = await _context.books.Include(x => x.author).Include(x => x.publisher).FirstOrDefaultAsync(x => x == book);
+            book = await _context.books.FirstOrDefaultAsync(x => x == book);
             return View(book);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,title,description,cost,quantity,year,imgPath,imgAlterText")] Book book, int authorId, int publisherId)
+        public async Task<IActionResult> Edit(int id, [Bind("id,title,description,cost,quantity,year,imgPath,imgAlterText")] Book book, int authorId, int publisherId, string addGenreId, string delGenreId)
         {
             if (id != book.id)
             {
@@ -75,8 +74,17 @@ namespace сoursework.Controllers
             {
                 try
                 {
+                    book = await _context.books.Include(x => x.genres).FirstOrDefaultAsync(x => x.id == id);
                     book.author = await _context.authors.FirstOrDefaultAsync(x => x.id == authorId);
                     book.publisher = await _context.publishers.FirstOrDefaultAsync(x => x.id == publisherId);
+                    if (int.TryParse(addGenreId, out int res1))
+                    {
+                        book.genres.Add(await _context.genres.FirstOrDefaultAsync(x => x.id == int.Parse(addGenreId)));
+                    }
+                    if (int.TryParse(delGenreId, out int res))
+                    {
+                        book.genres.Remove(await _context.genres.FirstOrDefaultAsync(x => x.id == int.Parse(delGenreId)));
+                    }
                     _context.Update(book);
                     await _context.SaveChangesAsync();
                 }
@@ -96,7 +104,6 @@ namespace сoursework.Controllers
             return View(book);
         }
 
-        // GET: Books/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -114,7 +121,6 @@ namespace сoursework.Controllers
             return View(book);
         }
 
-        // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

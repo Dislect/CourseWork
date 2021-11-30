@@ -5,19 +5,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using сoursework.Data.Models;
 using сoursework.Data.Models.Identity;
-using сoursework.Data.Repository;
 using Microsoft.AspNetCore.Identity;
 
 namespace сoursework
 {
     public class Startup
     {
-        private string _connection { get; }
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            _connection = Configuration.GetConnectionString("DefaultConnection");
         }
 
         public IConfiguration Configuration { get; }
@@ -25,27 +21,23 @@ namespace сoursework
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BookStoreDBContext>(options =>
-                options.UseSqlServer(_connection));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<IdentityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
 
-            services.AddIdentity<User, IdentityRole>(opts =>
+            services.AddIdentity<User, IdentityRole>(options =>
                     {
-                        opts.Password.RequiredLength = 3;   // минимальная длина
-                        opts.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
-                        opts.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
-                        opts.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
-                        opts.Password.RequireDigit = false; // требуются ли цифры
+                        options.Password.RequiredLength = 3;   // минимальная длина
+                        options.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
+                        options.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
+                        options.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
+                        options.Password.RequireDigit = false; // требуются ли цифры
                     }
                 )
                 .AddEntityFrameworkStores<IdentityContext>();
 
-            services.AddTransient<BookRep>();
-           
-            services.AddMvc(option => option.EnableEndpointRouting = false)
-                .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0)
-                .AddSessionStateTempDataProvider();
+            services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

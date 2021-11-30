@@ -19,13 +19,11 @@ namespace сoursework.Controllers
             _context = context;
         }
 
-        // GET: Employees
         public async Task<IActionResult> Index()
         {
             return View(await _context.employees.Include(x => x.idPosition).ToListAsync());
         }
 
-        // GET: Employees/Create
         public IActionResult Create()
         {
             return View();
@@ -46,7 +44,6 @@ namespace сoursework.Controllers
             return View(employee);
         }
 
-        // GET: Employees/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -96,7 +93,6 @@ namespace сoursework.Controllers
             return View(employee);
         }
 
-        // GET: Employees/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -114,7 +110,6 @@ namespace сoursework.Controllers
             return View(employee);
         }
 
-        // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

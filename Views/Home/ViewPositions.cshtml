@@ -1,7 +1,5 @@
-﻿@model HomeViewModel
-@{
-    Layout = "_Layout";
-}
+﻿@model List<сoursework.Data.Models.ObjectsDB.Position>
+
 <h1>Должности и сотрудники</h1>
 <hr />
 <table class="Table">
@@ -13,7 +11,7 @@
     </thead>
     <tbody id="tbody">
         @{
-            foreach (var position in Model.bookRep.GetPositions().Result)
+            foreach (var position in Model)
             {
                 <tr>
                     <td>
@@ -21,7 +19,7 @@
                     </td>
                     <td>
                         <ul>
-                            @foreach (var employee in Model.bookRep.GetEmployeesThis(position).Result)
+                            @foreach (var employee in position.employees)
                             {
                                 <li>@employee.surname</li>
                             }

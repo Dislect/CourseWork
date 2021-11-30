@@ -18,13 +18,11 @@ namespace сoursework.Controllers
             _context = context;
         }
 
-        // GET: Positions
         public async Task<IActionResult> Index()
         {
             return View(await _context.positions.ToListAsync());
         }
 
-        // GET: Positions/Create
         public IActionResult Create()
         {
             return View();
@@ -43,7 +41,6 @@ namespace сoursework.Controllers
             return View(position);
         }
 
-        // GET: Positions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,7 +88,6 @@ namespace сoursework.Controllers
             return View(position);
         }
 
-        // GET: Positions/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -109,7 +105,6 @@ namespace сoursework.Controllers
             return View(position);
         }
 
-        // POST: Positions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

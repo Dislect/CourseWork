@@ -1,7 +1,5 @@
-﻿@model HomeViewModel
-@{
-    Layout = "_Layout";
-}
+﻿@model List<сoursework.Data.Models.Genre>
+
 <h1>Жанры и книги по ним</h1>
 <hr />
 <table class="Table">
@@ -14,7 +12,7 @@
     </thead>
     <tbody id="tbody">
         @{
-            foreach (var genre in Model.bookRep.GetGenres().Result)
+            foreach (var genre in Model)
             {
                 <tr>
                     <td>
@@ -22,7 +20,7 @@
                     </td>
                     <td>
                         <ul>
-                            @foreach (var book in @Model.bookRep.GetBooksThis(genre).Result)
+                            @foreach (var book in genre.books)
                             {
                                 <li>@book.title</li>
                             }

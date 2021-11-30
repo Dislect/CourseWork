@@ -1,62 +1,58 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using сoursework.Data.Repository;
-using сoursework.View_Models;
+using Microsoft.EntityFrameworkCore;
+using сoursework.Data.Models;
 
 namespace сoursework.Controllers
 {
     public class HomeController : Controller
     {
-        private BookRep _bookRep;
-        private HomeViewModel _obj;
+        private readonly BookStoreDBContext _context;
 
-        public HomeController(BookRep bookRep)
+        public HomeController(BookStoreDBContext context)
         {
-            _bookRep = bookRep;
-            _obj = new()
-            {
-                bookRep = _bookRep
-            };
+            _context = context;
         }
 
         public ViewResult Home()
         {
-            return View(_obj);
+            return View();
         }
 
-        public ViewResult ViewAuthors()
+        public async Task<IActionResult> ViewAuthors()
         {
-            return View(_obj);
+            return View(await _context.authors.Include(x => x.books).ToListAsync());
         }
 
-        public ViewResult ViewBooks()
+        public async Task<IActionResult> ViewBooks()
         {
-            return View(_obj);
+            return View(await _context.books.ToListAsync());
         }
 
-        public ViewResult ViewEmployees()
+        public async Task<IActionResult> ViewEmployees()
         {
-            return View(_obj);
+            return View(await _context.employees.Include(x => x.idStore).ToListAsync());
         }
 
-        public ViewResult ViewGenres()
+        public async Task<IActionResult> ViewGenres()
         {
-            return View(_obj);
+            return View(await _context.genres.Include(x => x.books).ToListAsync());
         }
 
-        public ViewResult ViewPositions()
+        public async Task<IActionResult> ViewPositions()
         {
-            return View(_obj);
+            return View(await _context.positions.Include(x => x.employees).ToListAsync());
         }
 
-        public ViewResult ViewPublishers()
+        public async Task<IActionResult> ViewPublishers()
         {
-            return View(_obj);
+            return View(await _context.publishers.Include(x => x.books).ToListAsync());
         }
 
-        public ViewResult ViewStores()
+        public async Task<IActionResult> ViewStores()
         {
-            return View(_obj);
+            return View(await _context.stores.Include(x => x.books).Include(x => x.employees).ToListAsync());
         }
     }
 }

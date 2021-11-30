@@ -24,7 +24,7 @@
                         <a asp-controller="Home" asp-action="ViewBooks">Количество книг на складе</a>
                     </li>
                     <li>
-                        <a asp-controller="Home" asp-action="ViewEmployees">Сотрудники и контактные данные</a>
+                        <a asp-controller="Home" asp-action="ViewEmployees">Сотрудники</a>
                     </li>
                     <li>
                         <a asp-controller="Home" asp-action="ViewGenres">Жанры и книги по ним</a>
@@ -69,12 +69,15 @@
                     </ul>
                 </li>
             }
-            <li class="right">
-                <a asp-controller="Account" asp-action="Login">Войти</a>
-            </li>
-            <li class="right">
-                <a asp-controller="Account" asp-action="Register">Регистрация</a>
-            </li>
+            @if (!ViewContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                <li class="right">
+                    <a asp-controller="Account" asp-action="Login">Войти</a>
+                </li>
+                <li class="right">
+                    <a asp-controller="Account" asp-action="Register">Регистрация</a>
+                </li>
+            }
             @if (ViewContext.HttpContext.User.IsInRole("employee"))
             {
                 <li class="right">
