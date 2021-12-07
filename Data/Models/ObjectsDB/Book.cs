@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace сoursework.Data.Models
 {
-    [Table("Books")]
     public class Book
     {
         [Display(Name = "id")]

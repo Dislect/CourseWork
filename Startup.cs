@@ -28,7 +28,7 @@ namespace сoursework
 
             services.AddIdentity<User, IdentityRole>(options =>
                     {
-                        options.Password.RequiredLength = 3;   // минимальная длина
+                        options.Password.RequiredLength = 3;   // минимальная длина пароля
                         options.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
                         options.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
                         options.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
@@ -42,13 +42,17 @@ namespace сoursework
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // подробные сообщения об ошибках
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
+
+            // исп. статических файлов
             app.UseStaticFiles();
 
             app.UseRouting();
 
-            app.UseAuthentication();    // подключение аутентификации
+            // подключение аутентификации и авторизации
+            app.UseAuthentication();    
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

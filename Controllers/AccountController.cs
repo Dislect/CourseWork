@@ -36,7 +36,7 @@ namespace сoursework.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRolesAsync(user, new List<string>() { "employee" });
+                    await _userManager.AddToRoleAsync(user, "employee");
                     // установка куки
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Home", "Home");

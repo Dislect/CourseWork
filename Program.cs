@@ -15,6 +15,7 @@ namespace сoursework
         {
             var host = CreateHostBuilder(args).Build();
 
+            // инициализация admin аккаунта и роли "employee"
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;

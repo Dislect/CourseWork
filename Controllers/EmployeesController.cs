@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using сoursework.Data.Models;
 using сoursework.Data.Models.ObjectsDB;
@@ -51,17 +52,21 @@ namespace сoursework.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.employees.FindAsync(id);
+            var employee = await _context.employees.Include(x => x.idPosition).Include(x => x.idStore)
+                .FirstOrDefaultAsync(x => x.id == id);
             if (employee == null)
             {
                 return NotFound();
             }
+
+            ViewBag.Store = await _context.stores.ToListAsync();
+            ViewBag.Position = await _context.positions.ToListAsync();
             return View(employee);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,name,surname,patronymic,imgPath,imgAlterText,phoneNumber")] Employee employee, int storeId, int positionId)
+        public async Task<IActionResult> Edit(int id, [Bind("id,name,surname,patronymic,imgPath,imgAlterText,phoneNumber")] Employee employee, int idStore, int idPosition)
         {
             if (id != employee.id)
             {
@@ -72,8 +77,8 @@ namespace сoursework.Controllers
             {
                 try
                 {
-                    employee.idStore = await _context.stores.FirstOrDefaultAsync(x => x.id == storeId);
-                    employee.idPosition = await _context.positions.FirstOrDefaultAsync(x => x.id == positionId);
+                    employee.idStore = await _context.stores.FirstOrDefaultAsync(x => x.id == idStore);
+                    employee.idPosition = await _context.positions.FirstOrDefaultAsync(x => x.id == idPosition);
                     _context.Update(employee);
                     await _context.SaveChangesAsync();
                 }
@@ -90,6 +95,8 @@ namespace сoursework.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Store = await _context.stores.ToListAsync();
+            ViewBag.Position = await _context.positions.ToListAsync();
             return View(employee);
         }
 

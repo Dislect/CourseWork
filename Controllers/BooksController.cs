@@ -74,18 +74,25 @@ namespace сoursework.Controllers
             {
                 try
                 {
-                    book = await _context.books.Include(x => x.genres).FirstOrDefaultAsync(x => x.id == id);
-                    book.author = await _context.authors.FirstOrDefaultAsync(x => x.id == authorId);
-                    book.publisher = await _context.publishers.FirstOrDefaultAsync(x => x.id == publisherId);
+                    var oldbook = await _context.books.Include(x => x.genres).FirstOrDefaultAsync(x => x.id == id);
+                    oldbook.title = book.title;
+                    oldbook.description = book.description;
+                    oldbook.cost = book.cost;
+                    oldbook.quantity = book.quantity;
+                    oldbook.year = book.year;
+                    oldbook.imgPath = book.imgPath;
+                    oldbook.imgAlterText = book.imgAlterText;
+                    oldbook.author = await _context.authors.FirstOrDefaultAsync(x => x.id == authorId);
+                    oldbook.publisher = await _context.publishers.FirstOrDefaultAsync(x => x.id == publisherId);
                     if (int.TryParse(addGenreId, out int res1))
                     {
-                        book.genres.Add(await _context.genres.FirstOrDefaultAsync(x => x.id == int.Parse(addGenreId)));
+                        oldbook.genres.Add(await _context.genres.FirstOrDefaultAsync(x => x.id == int.Parse(addGenreId)));
                     }
                     if (int.TryParse(delGenreId, out int res))
                     {
-                        book.genres.Remove(await _context.genres.FirstOrDefaultAsync(x => x.id == int.Parse(delGenreId)));
+                        oldbook.genres.Remove(await _context.genres.FirstOrDefaultAsync(x => x.id == int.Parse(delGenreId)));
                     }
-                    _context.Update(book);
+                    _context.Update(oldbook);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
