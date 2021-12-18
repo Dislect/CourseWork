@@ -12,43 +12,56 @@
 <br />
 <table class="Table">
     <thead>
-        <tr>
-            <th>
-                ID
-            </th>
-            <th>
-                Имя
-            </th>
-            <th>
-                Фамилия
-            </th>
-            <th>
-                Отчество
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Имя
+        </th>
+        <th>
+            Фамилия
+        </th>
+        <th>
+            Отчество
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.surname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.patronymic)
-                </td>
-                <td> 
-                    <a asp-action="Edit" asp-route-id="@item.id">Изменить</a> <br />
-                    <a asp-action="Delete" asp-route-id="@item.id">Удалить</a>
-                </td>
-            </tr>
-        }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patronymic)
+            </td>
+            <td> 
+                <a asp-action="Edit" asp-route-id="@item.id">Изменить</a> <br />
+                <a asp-action="Delete" asp-route-id="@item.id">Удалить</a>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
+
+<script>
+    $(document).ready(function () {
+        $('.Table').tablesorter();
+        var arr = $('tbody tr')
+        for (var i = 0; i < arr.length; i++) {
+            var id = $(arr[i]).children().first().html();
+            if (id % 2 != 0) {
+                $(arr[i]).css('background-color', 'silver');
+            }
+        }
+    });
+</script>

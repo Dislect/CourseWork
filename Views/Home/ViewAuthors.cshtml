@@ -2,34 +2,40 @@
 
     <h1>Авторы и их книги</h1>
     <hr />
-    <table class="Table">
+<table class="Table">
 
-        <thead>
+    <thead>
+    <tr>
+        <th>ФИО автора</th>
+        <th>Книги автора</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    @{
+        foreach (var author in Model)
+        {
             <tr>
-                <th>ФИО автора</th>
-                <th>Книги автора</th>
+                <td>
+                    @author.name
+                    @author.patronymic
+                    @author.surname
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var book in author.books)
+                        {
+                            <li>@book.title</li>
+                        }
+                    </ul>
+                </td>
             </tr>
-        </thead>
-        <tbody id="tbody">
-            @{
-                foreach (var author in Model)
-                {
-                    <tr>
-                        <td>
-                            @author.name
-                            @author.patronymic
-                            @author.surname
-                        </td>
-                        <td>
-                            <ul>
-                                @foreach (var book in author.books)
-                                {
-                                    <li>@book.title</li>
-                                }
-                            </ul>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
+        }
+    }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $(".Table").tablesorter();
+    });
+</script>
