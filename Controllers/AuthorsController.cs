@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,16 +29,16 @@ namespace сoursework.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,name,surname,patronymic")] Author author)
+        public async Task Create(string name, string surname, string patronymic)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(author);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(author);
+            Author author = new Author();
+            author.name = name;
+            author.surname = surname;
+            author.patronymic = patronymic;
+            _context.Add(author);
+            await _context.SaveChangesAsync();
+            //return RedirectToAction(nameof(Index));
+            //return View(author);
         }
 
         public async Task<IActionResult> Edit(int? id)

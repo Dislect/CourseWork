@@ -8,97 +8,96 @@
     <title>ИС</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/style.css" type="text/css">
-    <script src="~/js/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js" integrity="sha512-qzgd5cYSZcosqpzpn7zF2ZId8f/8CHmFKZ8j7mU4OUXTNRd5g+ZHBPsgKEwoqxCtdQvExE5LprwwPAgoicguNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/js/script.js"></script>
 </head>
 
 <body>
-    <nav class="menu" id="menu">
-        <ul>
+<nav class="menu" id="menu">
+    <ul>
+        <li>
+            <a asp-action="Home" asp-controller="Home">Быстрый просмотр</a>
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="ViewAuthors">Авторы и их книги</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="ViewBooks">Количество книг на складе</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="ViewEmployees">Сотрудники</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="ViewGenres">Жанры и книги по ним</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="ViewPositions">Должности и сотрудники</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="ViewPublishers">Издатели и их книги</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="ViewStores">Информация о магазинах</a>
+                </li>
+            </ul>
+        </li>
+        @if (ViewContext.HttpContext.User.IsInRole("employee"))
+        {
             <li>
-                <a asp-action="Home" asp-controller="Home">Быстрый просмотр</a>
+                <a asp-action="Home" asp-controller="Home">Изменение, создание и удаление данных</a>
                 <ul>
                     <li>
-                        <a asp-controller="Home" asp-action="ViewAuthors">Авторы и их книги</a>
+                        <a asp-controller="Authors" asp-action="Index">Авторы</a>
                     </li>
                     <li>
-                        <a asp-controller="Home" asp-action="ViewBooks">Количество книг на складе</a>
+                        <a asp-controller="Books" asp-action="Index">Книги</a>
                     </li>
                     <li>
-                        <a asp-controller="Home" asp-action="ViewEmployees">Сотрудники</a>
+                        <a asp-controller="Employees" asp-action="Index">Сотрудники</a>
                     </li>
                     <li>
-                        <a asp-controller="Home" asp-action="ViewGenres">Жанры и книги по ним</a>
+                        <a asp-controller="Genres" asp-action="Index">Жанры</a>
                     </li>
                     <li>
-                        <a asp-controller="Home" asp-action="ViewPositions">Должности и сотрудники</a>
+                        <a asp-controller="Positions" asp-action="Index">Должности</a>
                     </li>
                     <li>
-                        <a asp-controller="Home" asp-action="ViewPublishers">Издатели и их книги</a>
+                        <a asp-controller="Publishers" asp-action="Index">Издатели</a>
                     </li>
                     <li>
-                        <a asp-controller="Home" asp-action="ViewStores">Информация о магазинах</a>
+                        <a asp-controller="Stores" asp-action="Index">Магазины</a>
                     </li>
                 </ul>
             </li>
-            @if (ViewContext.HttpContext.User.IsInRole("employee"))
-            {
-                <li>
-                    <a asp-action="Home" asp-controller="Home">Изменение, создание и удаление данных</a>
-                    <ul>
-                        <li>
-                            <a asp-controller="Authors" asp-action="Index">Авторы</a>
-                        </li>
-                        <li>
-                            <a asp-controller="Books" asp-action="Index">Книги</a>
-                        </li>
-                        <li>
-                            <a asp-controller="Employees" asp-action="Index">Сотрудники</a>
-                        </li>
-                        <li>
-                            <a asp-controller="Genres" asp-action="Index">Жанры</a>
-                        </li>
-                        <li>
-                            <a asp-controller="Positions" asp-action="Index">Должности</a>
-                        </li>
-                        <li>
-                            <a asp-controller="Publishers" asp-action="Index">Издатели</a>
-                        </li>
-                        <li>
-                            <a asp-controller="Stores" asp-action="Index">Магазины</a>
-                        </li>
-                    </ul>
-                </li>
-            }
-            @if (!ViewContext.HttpContext.User.Identity.IsAuthenticated)
-            {
-                <li class="right">
-                    <a asp-controller="Account" asp-action="Login">Войти</a>
-                </li>
-                <li class="right">
-                    <a asp-controller="Account" asp-action="Register">Регистрация</a>
-                </li>
-            }
-            @if (ViewContext.HttpContext.User.IsInRole("employee"))
-            {
-                <li class="right">
-                    <a asp-controller="Account" asp-action="Logout">Выйти</a>
-                </li>
-            }
-        </ul>
-        <script type="text/javascript">shineLinks('menu');</script>
-    </nav>
+        }
+        @if (!ViewContext.HttpContext.User.Identity.IsAuthenticated)
+        {
+            <li class="right">
+                <a asp-controller="Account" asp-action="Login">Войти</a>
+            </li>
+            <li class="right">
+                <a asp-controller="Account" asp-action="Register">Регистрация</a>
+            </li>
+        }
+        @if (ViewContext.HttpContext.User.IsInRole("employee"))
+        {
+            <li class="right">
+                <a asp-controller="Account" asp-action="Logout">Выйти</a>
+            </li>
+        }
+    </ul>
+</nav>
 
-    <main>
-        @RenderBody()
-    </main>
+<main>
+    @RenderBody()
+</main>
 
-    <footer>
-        <p>
-            © "ИС для книжного магазина", 2021. Все права защищены.
-        </p>
-    </footer>
-
+<footer>
+    <p>
+        © "ИС для книжного магазина", 2021. Все права защищены.
+    </p>
+</footer>
+    <script src="~/js/script.js"></script>
 </body>
 </html>
