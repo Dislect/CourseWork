@@ -29,7 +29,7 @@ namespace сoursework.Controllers
         }
 
         [HttpPost]
-        public async Task Create(string name, string surname, string patronymic)
+        public async Task<string> Create(string name, string surname, string patronymic)
         {
             Author author = new Author();
             author.name = name;
@@ -38,7 +38,7 @@ namespace сoursework.Controllers
             _context.Add(author);
             await _context.SaveChangesAsync();
             //return RedirectToAction(nameof(Index));
-            //return View(author);
+            return (author.id.ToString());
         }
 
         public async Task<IActionResult> Edit(int? id)
